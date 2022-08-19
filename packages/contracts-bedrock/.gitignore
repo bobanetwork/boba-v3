@@ -1,0 +1,9 @@
+artifacts
+forge-artifacts
+cache
+typechain
+coverage.out
+.deps
+broadcast
+genesis.json
+src/contract-artifacts.ts
