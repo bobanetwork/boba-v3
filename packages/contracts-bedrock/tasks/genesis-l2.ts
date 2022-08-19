@@ -283,11 +283,11 @@ task('genesis-l2', 'create a genesis config')
         symbol: 'WETH',
         decimals: 18,
       },
-      GovernanceToken: {
-        name: 'Optimism',
-        symbol: 'OP',
-        _owner: deployConfig.proxyAdmin,
-      },
+      // GovernanceToken: {
+      //   name: 'Optimism',
+      //   symbol: 'OP',
+      //   _owner: deployConfig.proxyAdmin,
+      // },
     }
 
     assertEvenLength(implementationSlot)
@@ -351,15 +351,15 @@ task('genesis-l2', 'create a genesis config')
       }
     }
 
-    // Set the GovernanceToken in the state
-    // Cannot easily set storage due to no easy access to compiler
-    // output
-    const governanceToken = await hre.deployments.getArtifact('GovernanceToken')
-    alloc[predeploys.GovernanceToken] = {
-      nonce: '0x0',
-      balance: '0x0',
-      code: governanceToken.deployedBytecode,
-    }
+    // // Set the GovernanceToken in the state
+    // // Cannot easily set storage due to no easy access to compiler
+    // // output
+    // const governanceToken = await hre.deployments.getArtifact('GovernanceToken')
+    // alloc[predeploys.GovernanceToken] = {
+    //   nonce: '0x0',
+    //   balance: '0x0',
+    //   code: governanceToken.deployedBytecode,
+    // }
 
     // Give each predeploy a single wei
     for (let i = 0; i <= 0xff; i++) {
