@@ -35,6 +35,8 @@ packages/integration-tests-bedrock/artifacts
 packages/contracts-bedrock/deployments/devnetL1
 packages/contracts-bedrock/deployments/anvil
 
+volumes/
+
 # vim
 *.sw*
 
