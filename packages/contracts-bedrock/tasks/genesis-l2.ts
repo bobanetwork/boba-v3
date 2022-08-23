@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import assert from 'assert'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { OptimismGenesis, State } from '@eth-optimism/core-utils'
 import 'hardhat-deploy'
 import '@eth-optimism/hardhat-deploy-config'
@@ -475,7 +476,7 @@ task('genesis-l2', 'create a genesis config')
 
     const startingTimestamp = l1StartingBlock?.timestamp || 0
 
-    const genesis: OptimismGenesis = {
+    const genesis: any = {
       config: {
         chainId: deployConfig.l2ChainID,
         homesteadBlock: 0,

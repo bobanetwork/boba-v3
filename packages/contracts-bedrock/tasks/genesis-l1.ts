@@ -72,7 +72,7 @@ task('genesis-l1', 'create a genesis config')
       }
     }
 
-    const genesis: Genesis = {
+    const genesis: any = {
       config: {
         chainId: deployConfig.l1ChainID,
         homesteadBlock: 0,
