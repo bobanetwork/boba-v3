@@ -24,11 +24,6 @@ export enum L1ChainID {
  * L2 network chain IDs
  */
 export enum L2ChainID {
-  OPTIMISM = 10,
-  OPTIMISM_GOERLI = 420,
-  OPTIMISM_KOVAN = 69,
-  OPTIMISM_HARDHAT_LOCAL = 31337,
-  OPTIMISM_HARDHAT_DEVNET = 17,
   OPTIMISM_BEDROCK_LOCAL_DEVNET = 901,
 }
 
@@ -39,9 +34,7 @@ export interface OEL1Contracts {
   AddressManager: Contract
   L1CrossDomainMessenger: Contract
   L1StandardBridge: Contract
-  StateCommitmentChain: Contract
-  CanonicalTransactionChain: Contract
-  BondManager: Contract
+  //BondManager: Contract
   // Bedrock
   OptimismPortal: Contract
   L2OutputOracle: Contract
@@ -54,13 +47,12 @@ export interface OEL2Contracts {
   L2CrossDomainMessenger: Contract
   L2StandardBridge: Contract
   L2ToL1MessagePasser: Contract
-  OVM_L1BlockNumber: Contract
-  OVM_L2ToL1MessagePasser: Contract
-  OVM_DeployerWhitelist: Contract
-  OVM_ETH: Contract
-  OVM_GasPriceOracle: Contract
-  OVM_SequencerFeeVault: Contract
-  WETH: Contract
+  L1BlockNumber: Contract
+  //DeployerWhitelist: Contract
+  LegacyERC20ETH: Contract
+  GasPriceOracle: Contract
+  //SequencerFeeVault: Contract
+  // WETH: Contract
 }
 
 /**

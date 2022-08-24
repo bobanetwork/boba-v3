@@ -12,9 +12,8 @@ import {
   TransactionResponse,
   BlockTag,
 } from '@ethersproject/abstract-provider'
-import { predeploys } from '@eth-optimism/contracts'
-import { getContractInterface } from '@eth-optimism/contracts-bedrock'
 import { hexStringEquals } from '@eth-optimism/core-utils'
+import { getContractInterface } from '@eth-optimism/contracts-bedrock/dist/contract-defs'
 
 import {
   IBridgeAdapter,
@@ -25,6 +24,7 @@ import {
   MessageDirection,
 } from '../interfaces'
 import { toAddress } from '../utils'
+import { predeploys } from '../cross-chain-messenger'
 
 /**
  * Bridge adapter for any token bridge that uses the standard token bridge interface.

@@ -206,13 +206,13 @@ export interface ICrossChainMessenger {
    */
   toCrossChainMessage(message: MessageLike): Promise<CrossChainMessage>
 
-  /**
-   * Retrieves the status of a particular message as an enum.
-   *
-   * @param message Cross chain message to check the status of.
-   * @returns Status of the message.
-   */
-  getMessageStatus(message: MessageLike): Promise<MessageStatus>
+  // /**
+  //  * Retrieves the status of a particular message as an enum.
+  //  *
+  //  * @param message Cross chain message to check the status of.
+  //  * @returns Status of the message.
+  //  */
+  // getMessageStatus(message: MessageLike): Promise<MessageStatus>
 
   /**
    * Finds the receipt of the transaction that executed a particular cross chain message.
@@ -244,26 +244,26 @@ export interface ICrossChainMessenger {
     }
   ): Promise<MessageReceipt>
 
-  /**
-   * Waits until the status of a given message changes to the expected status. Note that if the
-   * status of the given message changes to a status that implies the expected status, this will
-   * still return. If the status of the message changes to a status that exclues the expected
-   * status, this will throw an error.
-   *
-   * @param message Message to wait for.
-   * @param status Expected status of the message.
-   * @param opts Options to pass to the waiting function.
-   * @param opts.pollIntervalMs Number of milliseconds to wait when polling.
-   * @param opts.timeoutMs Milliseconds to wait before timing out.
-   */
-  waitForMessageStatus(
-    message: MessageLike,
-    status: MessageStatus,
-    opts?: {
-      pollIntervalMs?: number
-      timeoutMs?: number
-    }
-  ): Promise<void>
+  // /**
+  //  * Waits until the status of a given message changes to the expected status. Note that if the
+  //  * status of the given message changes to a status that implies the expected status, this will
+  //  * still return. If the status of the message changes to a status that exclues the expected
+  //  * status, this will throw an error.
+  //  *
+  //  * @param message Message to wait for.
+  //  * @param status Expected status of the message.
+  //  * @param opts Options to pass to the waiting function.
+  //  * @param opts.pollIntervalMs Number of milliseconds to wait when polling.
+  //  * @param opts.timeoutMs Milliseconds to wait before timing out.
+  //  */
+  // waitForMessageStatus(
+  //   message: MessageLike,
+  //   status: MessageStatus,
+  //   opts?: {
+  //     pollIntervalMs?: number
+  //     timeoutMs?: number
+  //   }
+  // ): Promise<void>
 
   /**
    * Estimates the amount of gas required to fully execute a given message on L2. Only applies to
@@ -283,16 +283,16 @@ export interface ICrossChainMessenger {
     }
   ): Promise<BigNumber>
 
-  /**
-   * Returns the estimated amount of time before the message can be executed. When this is a
-   * message being sent to L1, this will return the estimated time until the message will complete
-   * its challenge period. When this is a message being sent to L2, this will return the estimated
-   * amount of time until the message will be picked up and executed on L2.
-   *
-   * @param message Message to estimate the time remaining for.
-   * @returns Estimated amount of time remaining (in seconds) before the message can be executed.
-   */
-  estimateMessageWaitTimeSeconds(message: MessageLike): Promise<number>
+  // /**
+  //  * Returns the estimated amount of time before the message can be executed. When this is a
+  //  * message being sent to L1, this will return the estimated time until the message will complete
+  //  * its challenge period. When this is a message being sent to L2, this will return the estimated
+  //  * amount of time until the message will be picked up and executed on L2.
+  //  *
+  //  * @param message Message to estimate the time remaining for.
+  //  * @returns Estimated amount of time remaining (in seconds) before the message can be executed.
+  //  */
+  // estimateMessageWaitTimeSeconds(message: MessageLike): Promise<number>
 
   /**
    * Queries the current challenge period in seconds from the StateCommitmentChain.
@@ -311,56 +311,56 @@ export interface ICrossChainMessenger {
     message: MessageLike
   ): Promise<BedrockOutputData | null>
 
-  /**
-   * Returns the state root that corresponds to a given message. This is the state root for the
-   * block in which the transaction was included, as published to the StateCommitmentChain. If the
-   * state root for the given message has not been published yet, this function returns null.
-   *
-   * @param message Message to find a state root for.
-   * @returns State root for the block in which the message was created.
-   */
-  getMessageStateRoot(message: MessageLike): Promise<StateRoot | null>
+  // /**
+  //  * Returns the state root that corresponds to a given message. This is the state root for the
+  //  * block in which the transaction was included, as published to the StateCommitmentChain. If the
+  //  * state root for the given message has not been published yet, this function returns null.
+  //  *
+  //  * @param message Message to find a state root for.
+  //  * @returns State root for the block in which the message was created.
+  //  */
+  // getMessageStateRoot(message: MessageLike): Promise<StateRoot | null>
 
-  /**
-   * Returns the StateBatchAppended event that was emitted when the batch with a given index was
-   * created. Returns null if no such event exists (the batch has not been submitted).
-   *
-   * @param batchIndex Index of the batch to find an event for.
-   * @returns StateBatchAppended event for the batch, or null if no such batch exists.
-   */
-  getStateBatchAppendedEventByBatchIndex(
-    batchIndex: number
-  ): Promise<Event | null>
+  // /**
+  //  * Returns the StateBatchAppended event that was emitted when the batch with a given index was
+  //  * created. Returns null if no such event exists (the batch has not been submitted).
+  //  *
+  //  * @param batchIndex Index of the batch to find an event for.
+  //  * @returns StateBatchAppended event for the batch, or null if no such batch exists.
+  //  */
+  // getStateBatchAppendedEventByBatchIndex(
+  //   batchIndex: number
+  // ): Promise<Event | null>
 
-  /**
-   * Returns the StateBatchAppended event for the batch that includes the transaction with the
-   * given index. Returns null if no such event exists.
-   *
-   * @param transactionIndex Index of the L2 transaction to find an event for.
-   * @returns StateBatchAppended event for the batch that includes the given transaction by index.
-   */
-  getStateBatchAppendedEventByTransactionIndex(
-    transactionIndex: number
-  ): Promise<Event | null>
+  // /**
+  //  * Returns the StateBatchAppended event for the batch that includes the transaction with the
+  //  * given index. Returns null if no such event exists.
+  //  *
+  //  * @param transactionIndex Index of the L2 transaction to find an event for.
+  //  * @returns StateBatchAppended event for the batch that includes the given transaction by index.
+  //  */
+  // getStateBatchAppendedEventByTransactionIndex(
+  //   transactionIndex: number
+  // ): Promise<Event | null>
 
-  /**
-   * Returns information about the state root batch that included the state root for the given
-   * transaction by index. Returns null if no such state root has been published yet.
-   *
-   * @param transactionIndex Index of the L2 transaction to find a state root batch for.
-   * @returns State root batch for the given transaction index, or null if none exists yet.
-   */
-  getStateRootBatchByTransactionIndex(
-    transactionIndex: number
-  ): Promise<StateRootBatch | null>
+  // /**
+  //  * Returns information about the state root batch that included the state root for the given
+  //  * transaction by index. Returns null if no such state root has been published yet.
+  //  *
+  //  * @param transactionIndex Index of the L2 transaction to find a state root batch for.
+  //  * @returns State root batch for the given transaction index, or null if none exists yet.
+  //  */
+  // getStateRootBatchByTransactionIndex(
+  //   transactionIndex: number
+  // ): Promise<StateRootBatch | null>
 
-  /**
-   * Generates the proof required to finalize an L2 to L1 message.
-   *
-   * @param message Message to generate a proof for.
-   * @returns Proof that can be used to finalize the message.
-   */
-  getMessageProof(message: MessageLike): Promise<CrossChainMessageProof>
+  // /**
+  //  * Generates the proof required to finalize an L2 to L1 message.
+  //  *
+  //  * @param message Message to generate a proof for.
+  //  * @returns Proof that can be used to finalize the message.
+  //  */
+  // getMessageProof(message: MessageLike): Promise<CrossChainMessageProof>
 
   /**
    * Generates the bedrock proof required to finalize an L2 to L1 message.

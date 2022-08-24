@@ -2,7 +2,6 @@ import { task, types } from 'hardhat/config'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
-import { predeploys } from '@eth-optimism/contracts-bedrock'
 import { Event, Contract, Wallet, providers, utils } from 'ethers'
 
 import {
@@ -10,6 +9,7 @@ import {
   StandardBridgeAdapter,
   MessageStatus,
 } from '../src'
+import { predeploys } from './deposit-eth'
 
 const deployWETH9 = async (
   hre: HardhatRuntimeEnvironment,
@@ -52,7 +52,7 @@ const createOptimismMintableERC20 = async (
 
   const OptimismMintableERC20TokenFactory = await hre.ethers.getContractAt(
     Deployment__OptimismMintableERC20TokenFactory.abi,
-    predeploys.OptimismMintableERC20Factory,
+    predeploys.L2StandardTokenFactory,
     l2Signer
   )
 
@@ -306,18 +306,18 @@ task('deposit-erc20', 'Deposits WETH9 onto L2.')
       }
     }
 
-    setInterval(async () => {
-      const currentStatus = await messenger.getMessageStatus(withdraw)
-      console.log(`Message status: ${MessageStatus[currentStatus]}`)
-    }, 3000)
+    // setInterval(async () => {
+    //   const currentStatus = await messenger.getMessageStatus(withdraw)
+    //   console.log(`Message status: ${MessageStatus[currentStatus]}`)
+    // }, 3000)
 
     const now = Math.floor(Date.now() / 1000)
 
-    console.log('Waiting for message to be able to be relayed')
-    await messenger.waitForMessageStatus(
-      withdraw,
-      MessageStatus.READY_FOR_RELAY
-    )
+    // console.log('Waiting for message to be able to be relayed')
+    // await messenger.waitForMessageStatus(
+    //   withdraw,
+    //   MessageStatus.READY_FOR_RELAY
+    // )
 
     const finalize = await messenger.finalizeMessage(withdraw)
     const receipt = await finalize.wait()

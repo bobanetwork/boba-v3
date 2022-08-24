@@ -1,14 +1,26 @@
 import { task, types } from 'hardhat/config'
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
-import { predeploys } from '@eth-optimism/contracts-bedrock'
 import { providers, utils } from 'ethers'
+
 
 import {
   CrossChainMessenger,
   StandardBridgeAdapter,
   MessageStatus,
 } from '../src'
+
+export const predeploys = {
+  L2ToL1MessagePasser: '0x4200000000000000000000000000000000000000',
+//  DeployerWhitelist: '0x4200000000000000000000000000000000000002',
+  L2CrossDomainMessenger: '0x4200000000000000000000000000000000000007',
+  GasPriceOracle: '0x420000000000000000000000000000000000000F',
+  L2StandardBridge: '0x4200000000000000000000000000000000000010',
+  //SequencerFeeVault: '0x4200000000000000000000000000000000000011',
+  L2StandardTokenFactory: '0x4200000000000000000000000000000000000012',
+  L1BlockNumber: '0x4200000000000000000000000000000000000013',
+  OVM_ETH: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
+}
 
 task('deposit-eth', 'Deposits WETH9 onto L2.')
   .addParam(
@@ -238,15 +250,15 @@ task('deposit-eth', 'Deposits WETH9 onto L2.')
     )
 
     console.log('Waiting to be able to withdraw')
-    setInterval(async () => {
-      const currentStatus = await messenger.getMessageStatus(ethWithdrawReceipt)
-      console.log(`Message status: ${MessageStatus[currentStatus]}`)
-    }, 3000)
+    // setInterval(async () => {
+    //   const currentStatus = await messenger.getMessageStatus(ethWithdrawReceipt)
+    //   console.log(`Message status: ${MessageStatus[currentStatus]}`)
+    // }, 3000)
 
-    await messenger.waitForMessageStatus(
-      ethWithdrawReceipt,
-      MessageStatus.READY_FOR_RELAY
-    )
+    // await messenger.waitForMessageStatus(
+    //   ethWithdrawReceipt,
+    //   MessageStatus.READY_FOR_RELAY
+    // )
 
     const ethFinalize = await messenger.finalizeMessage(ethWithdrawReceipt)
     const ethFinalizeReceipt = await ethFinalize.wait()

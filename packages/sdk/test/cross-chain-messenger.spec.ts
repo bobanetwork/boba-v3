@@ -1,6 +1,5 @@
 import { Provider } from '@ethersproject/abstract-provider'
 import { expectApprox, hashCrossDomainMessage } from '@eth-optimism/core-utils'
-import { predeploys } from '@eth-optimism/contracts'
 import { Contract } from 'ethers'
 import { ethers } from 'hardhat'
 
@@ -16,6 +15,7 @@ import {
   ETHBridgeAdapter,
   L1ChainID,
   L2ChainID,
+  predeploys,
 } from '../src'
 import { DUMMY_MESSAGE, DUMMY_EXTENDED_MESSAGE } from './helpers'
 
