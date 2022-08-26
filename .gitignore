@@ -5,6 +5,8 @@ temp
 .nyc_output
 coverage.json
 *.tsbuildinfo
+.idea/
+volumes/
 
 yarn-error.log
 .yarn/*
