@@ -20,8 +20,8 @@ jobs:
           submodules: recursive
 
     - uses: dcodeIO/setup-node-nvm@master
-      with: 
-        node-version: lts/*
+#      with: 
+#        node-version: lts/*
 
     - uses: actions/setup-go@v3
       with:
