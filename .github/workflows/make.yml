@@ -21,14 +21,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+          submodules: recursive
+
+    - name: Install Foundry
+      uses: foundry-rs/foundry-toolchain@v1
+      with:
+        version: nightly
+
     - name: Build project ${{ matrix.node-version }}
       uses: borales/actions-yarn@v3.0.0
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: curl -L https://foundry.paradigm.xyz | bash
-    - run: source /home/runner/.bashrc
-    - run: foundryup
+ #   - run: curl -L https://foundry.paradigm.xyz | bash
+ #   - run: source /home/runner/.bashrc
+ #   - run: foundryup
     - run: yarn
     - run: yarn build
     - run: make
