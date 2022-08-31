@@ -26,6 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: curl -L https://foundry.paradigm.xyz | bash && foundryup
     - run: yarn
     - run: yarn build
     - run: make
