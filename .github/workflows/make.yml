@@ -19,10 +19,7 @@ jobs:
       with:
           submodules: recursive
 
-    - uses: dcodeIO/setup-node-nvm@master
-      with: 
-        node-version: v16.16.0
-    - run: nvm use v16.16.0
+    - run: nvm install v16.16.0
 
     - uses: actions/setup-go@v3
       with:
