@@ -5,7 +5,7 @@ name: Make Test
 
 on:
   push:
-    branches: [ "wsdt/make-works" ] #change later
+    branches: [ "main" ] 
   pull_request:
     branches: [ "main" ]
 
