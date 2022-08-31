@@ -9,9 +9,9 @@ build-go: submodules op-node op-proposer op-batcher
 .PHONY: build-go
 
 build-ts: submodules
-	if [ -n "$$NVM_DIR" ]; then \
-		. $$NVM_DIR/nvm.sh && nvm use; \
-	fi
+	#if [ -n "$$NVM_DIR" ]; then \
+	#	. $$NVM_DIR/nvm.sh && nvm use; \
+	#fi
 	yarn install
 	yarn build
 .PHONY: build-ts
